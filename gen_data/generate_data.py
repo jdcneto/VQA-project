@@ -6,10 +6,13 @@ from random import choice
 import json
 import os
 
-if not os.path.exists('easy_vqa/data/train/images'):
-  os.makedirs('easy_vqa/data/train/images/')
-if not os.path.exists('easy_vqa/data/test/images'):
-  os.makedirs('easy_vqa/data/test/images/')
+# get current path
+path = os.getcwd()
+
+if not os.path.exists(path+'/data/train/images'):
+  os.makedirs(path+'/data/train/images/')
+if not os.path.exists(path+'/data/test/images'):
+  os.makedirs(path+'/data/test/images/')
 
 colors = list(Color)
 shapes = list(Shape)
@@ -30,18 +33,18 @@ def create_data(image_path, num):
     num_yes_no += new_num_yes_no
   return qs, num_yes_no
 
-train_questions, num_train_yes_no = create_data('easy_vqa/data/train/images', NUM_TRAIN)
-test_questions, num_test_yes_no = create_data('easy_vqa/data/test/images', NUM_TEST)
+train_questions, num_train_yes_no = create_data(path+'/data/train/images', NUM_TRAIN)
+test_questions, num_test_yes_no = create_data(path+'/data/test/images', NUM_TEST)
 
 all_questions = train_questions + test_questions
 all_answers = list(set(map(lambda q: q[1], all_questions)))
 
-with open('easy_vqa/data/train/questions.json', 'w') as file:
+with open(path+'/data/train/questions.json', 'w') as file:
   json.dump(train_questions, file)
-with open('easy_vqa/data/test/questions.json', 'w') as file:
+with open(path+'/data/test/questions.json', 'w') as file:
   json.dump(test_questions, file)
 
-with open('easy_vqa/data/answers.txt', 'w') as file:
+with open(path+'/data/answers.txt', 'w') as file:
   for answer in all_answers:
     file.write(f'{answer}\n')
 
