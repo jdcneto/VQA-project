@@ -40,7 +40,7 @@ def setup(use_data_dir):
 
 
   print('\n--- Reading/processing images...')
-  def load_and_procce ss_image(image_path):
+  def load_and_proccess_image(image_path):
     # Load image, then scale and shift pixel values to [-0.5, 0.5]
     im = img_to_array(load_img(image_path))
     return im / 255 - 0.5
