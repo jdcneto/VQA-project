@@ -76,7 +76,7 @@ def setup():
           all_answers, test_qs, test_answer_indices)  # for the analyze script
 
 def plots(history):
-  plt;figure()
+  plt.figure()
   plt.plot(history.history['loss'], label='Train loss')
   if 'val_loss' in history.history.keys():
     plt.plot(history.history['val_loss'],  label='Val loss')
