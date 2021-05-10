@@ -2,31 +2,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint
 import argparse
 import matplotlib.pyplot as plt
 from model import build_model
-from prepare_data import setup
-
-# Support command-line options
-parser = argparse.ArgumentParser()
-parser.add_argument('--big-model', action='store_true', help='Use the bigger model with more conv layers')
-parser.add_argument('--use-data-dir', action='store_true', help='Use custom data directory, at /data')
-args = parser.parse_args()
-
-def plots(history):
-  plt.figure(figsize=(14,4))
-  plt.subplot(1,2,1)
-  plt.plot(history.history['loss'], '.-', label='Train loss')
-  if 'val_loss' in history.history.keys():
-    plt.plot(history.history['val_loss'], '.-', label='Val loss')
-  plt.xlabel('Epochs');
-  plt.legend();
-  plt.grid();
-  plt.subplot(1,2,2)
-  plt.plot(history.history['accuracy'], '.-', label='Train accuracy')
-  plt.xlabel('Epochs');
-  if 'val_accuracy' in history.history.keys():
-    plt.plot(history.history['val_accuracy'], '.-', label='Val accuracy')
-  plt.legend();
-  plt.grid(); plt.show();
-  plt.savefig(fig.png)
+from prepare_data import setup, plots
 
 
 if args.big_model:
@@ -35,7 +11,7 @@ if args.use_data_dir:
   print('Using data directory')
 
 # Prepare data
-train_X_ims, train_X_seqs, train_Y, test_X_ims, test_X_seqs, test_Y, im_shape, vocab_size, num_answers, _, _, _ = setup(args.use_data_dir)
+train_X_ims, train_X_seqs, train_Y, test_X_ims, test_X_seqs, test_Y, im_shape, vocab_size, num_answers, _, _, _ = setup()
 
 print('\n--- Building model...')
 model = build_model(im_shape, vocab_size, num_answers)
