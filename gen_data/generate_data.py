@@ -17,8 +17,8 @@ if not os.path.exists(path+'/data/test/images'):
 colors = list(Color)
 shapes = list(Shape)
 
-NUM_TRAIN = 8000
-NUM_TEST =  2000
+NUM_TRAIN = 20000
+NUM_TEST =  8000
 
 def create_data(image_path, num):
   qs = []
