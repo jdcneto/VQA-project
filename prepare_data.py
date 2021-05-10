@@ -82,7 +82,6 @@ def plots(history):
     plt.plot(history.history['val_loss'],  label='Val loss')
   plt.xlabel('Epochs');
   plt.legend();
-  plt.grid(); plt.show();
   plt.savefig('loss.png')
   
   plt.figure()
@@ -91,5 +90,4 @@ def plots(history):
   if 'val_accuracy' in history.history.keys():
     plt.plot(history.history['val_accuracy'],  label='Val accuracy')
   plt.legend();
-  plt.grid(); plt.show();
   plt.savefig('acc.png')
