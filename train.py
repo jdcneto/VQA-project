@@ -1,6 +1,5 @@
 from tensorflow.keras.callbacks import ModelCheckpoint
 import argparse
-import matplotlib.pyplot as plt
 from model import build_model
 from prepare_data import setup, plots
 
