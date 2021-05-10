@@ -105,3 +105,23 @@ def setup(use_data_dir):
   return (train_X_ims, train_X_seqs, train_Y, test_X_ims, test_X_seqs,
           test_Y, im_shape, vocab_size, num_answers,
           all_answers, test_qs, test_answer_indices)  # for the analyze script
+
+
+
+def plots(history):
+  #plt.figure(figsize=(14,4))
+  plt.subplot(1,2,1)
+  plt.plot(history.history['loss'], label='Train loss')
+  if 'val_loss' in history.history.keys():
+    plt.plot(history.history['val_loss'],  label='Val loss')
+  plt.xlabel('Epochs');
+  plt.legend();
+  plt.grid();
+  plt.subplot(1,2,2)
+  plt.plot(history.history['accuracy'],  label='Train accuracy')
+  plt.xlabel('Epochs');
+  if 'val_accuracy' in history.history.keys():
+    plt.plot(history.history['val_accuracy'],  label='Val accuracy')
+  plt.legend();
+  plt.grid(); plt.show();
+  plt.savefig(fig.png)
