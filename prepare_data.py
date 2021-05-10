@@ -1,6 +1,7 @@
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.utils import to_categorical
+import matplotlib.pyplot as plt
 import json
 import os
 import numpy as np
