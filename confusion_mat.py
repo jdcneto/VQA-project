@@ -4,21 +4,14 @@ from model import build_model
 from prepare_data import setup
 from sklearn.metrics import multilabel_confusion_matrix, confusion_matrix
 import itertools
+import matplotlib.pyplot as plt
 
-# Support command-line options
-parser = argparse.ArgumentParser()
-parser.add_argument('--big-model', action='store_true')
-parser.add_argument('--model-weights', help='model weights file', default='model.h5')
-parser.add_argument('--use-data-dir', action='store_true', help='Use custom data directory, at /data')
-args = parser.parse_args()
-print('\n--- Calling train with big_model: {}'.format(args.big_model))
-print('\n--- Model weights file: {}'.format(args.model_weights))
-train_X_ims, train_X_seqs, train_Y, test_X_ims, test_X_seqs, test_Y, im_shape, vocab_size, num_answers, all_answers, test_qs, test_answer_indices = setup(args.use_data_dir)
-print(args.use_data_dir)
+train_X_ims, train_X_seqs, train_Y, test_X_ims, test_X_seqs, test_Y, im_shape, vocab_size, num_answers, all_answers, test_qs, test_answer_indices = setup()
+
 print('\n--- Building model...')
 model = build_model(im_shape, vocab_size, num_answers)
 
-model.load_weights(args.model_weights)
+model.load_weights('model.h5')
 predictions = model.predict([test_X_ims, test_X_seqs])
 
 cm = (confusion_matrix(test_Y.argmax(axis=1), predictions.argmax(axis=1)))
