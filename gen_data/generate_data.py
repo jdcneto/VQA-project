@@ -1,5 +1,6 @@
 from shape import Shape
 from color import Color
+from location import Location
 from images import create_image
 from questions import create_questions
 from random import choice
@@ -16,9 +17,10 @@ if not os.path.exists(path+'/data/test/images'):
 
 colors = list(Color)
 shapes = list(Shape)
+locations = list(Location)
 
-NUM_TRAIN = 20000
-NUM_TEST =  8000
+NUM_TRAIN = 15000
+NUM_TEST =  5000
 
 def create_data(image_path, num):
   qs = []
@@ -26,9 +28,10 @@ def create_data(image_path, num):
   for i in range(num):
     shape = choice(shapes)
     color = choice(colors)
+    location = choice(locations)
 
-    create_image(f'{image_path}/{i}.png', shape, color)
-    new_qs, new_num_yes_no = create_questions(shape, color, i)
+    create_image(f'{image_path}/{i}.png', shape, color, location)
+    new_qs, new_num_yes_no = create_questions(shape, color, location, i)
     qs += new_qs
     num_yes_no += new_num_yes_no
   return qs, num_yes_no
